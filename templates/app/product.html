@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1> Список продуктів </h1>
+    <h1> -------------------------------------- </h1> 
+
+    {% if product_list %}
+        {% for product in product_list %}
+            <a href="{% url 'product_info' product_name=product.name %}"><h2> Продукт: {{ product.name }} </h2></a>
+            <h3> Ціна: {{ product.price }} </h3>
+            <h1> -------------------------------------- </h1> 
+        {% endfor %}
+    {% else %}
+        <h1> Товварів немає в наявності! </h1>
+    {% endif %}
+
+</body>
+</html>

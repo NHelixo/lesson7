@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1> {{ product.name }} </h1>
+    <h2> Ціна: {{ product.price }} </h2>
+    <h4> Опис: {{ product.description }} </h4>
+
+    <form method="post" action="{% url 'user_response' product_name=product.name %}">
+    {% csrf_token %}
+        <h1> Залишити відгук </h1>
+        <h3> Ваше ім'я: </h3> <input type="text" name="name" id="name">
+        <h3> Текст відгуку: </h3> <textarea name="text" id="text" id="text"></textarea>
+        <h3> Оцінка: </h3> <input type="text" name="rating" id="rating">
+        <button type="submit"> Відправити </button>
+    </form>
+
+    <h1> Відгуки </h1>
+    <h3> -------------------------------------------- </h3>
+    {% if responses %}
+        {% for response in responses %}
+            {{ response.author }}
+            <h3> Оцінка: {{ response.rating }} </h3>
+            <h3> Відгук: </h3>{{ response.text }} </h3>
+            <h3> -------------------------------------------- </h3>
+        {% endfor %}
+    {% else %}
+        <h1> Немає відгуків! </h1>
+    {% endif %}
+    
+    
+</body>
+</html>
